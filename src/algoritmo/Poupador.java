@@ -19,29 +19,33 @@ public class Poupador extends ProgramaPoupador {
 			
 			if(sensor.getVisaoIdentificacao()[i] == -2 || 
 				sensor.getVisaoIdentificacao()[i] == -1 || 
-				sensor.getVisaoIdentificacao()[i] == 1 || 
-				sensor.getVisaoIdentificacao()[i] == 200) {
-				peso_campos[i] = 200;
+				sensor.getVisaoIdentificacao()[i] == 1) {
+				peso_campos[i] = 100.0f;
 			}
 			
 			if(sensor.getVisaoIdentificacao()[i] == 0) {
-				peso_campos[i] = 50;
+				peso_campos[i] = 30.0f;
+			}
+			
+			if(sensor.getVisaoIdentificacao()[i] == 200) {
+				peso_campos[i] = sensor.getNumeroDeMoedas() * 50;
+				
 			}
 			
 			if(sensor.getVisaoIdentificacao()[i] == 3) {
-				peso_campos[i] = 10;
+				peso_campos[i] = 70 / (1 + sensor.getNumeroDeMoedas());
 			}
 			
 			if(sensor.getVisaoIdentificacao()[i] == 4) {
-				peso_campos[i] = 1;
+				peso_campos[i] = 1.0f;
 			}
 			
 			if(sensor.getVisaoIdentificacao()[i] == 5) {
-				peso_campos[i] = 50;
+				peso_campos[i] = 100 / (1 + sensor.getNumeroDeMoedas());
 			}
 			
 			if(sensor.getVisaoIdentificacao()[i] == 100) {
-				peso_campos[i] = 50;
+				peso_campos[i] = 100.0f;
 			}
 				
 		}
@@ -73,6 +77,12 @@ public class Poupador extends ProgramaPoupador {
 		double a = Math.random();
 		float total = soma_peso_ordenado[0] / soma_total;
 		
+		System.out.println("Total float: "+ total);
+		System.out.println("Soma total: " + soma_total);
+		System.out.println("indece 0: " + soma_peso_ordenado[0]);
+		System.out.println("indece 1: " + soma_peso_ordenado[1]);
+		System.out.println("indece 2: " + soma_peso_ordenado[2]);
+		System.out.println("indece 3: " + soma_peso_ordenado[3]);
 		System.out.println(a);
 	
 		if(a > soma_peso_ordenado[0] / soma_total) {
