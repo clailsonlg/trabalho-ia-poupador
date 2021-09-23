@@ -1,14 +1,14 @@
 package algoritmo;
 
 import java.util.Arrays;
-import java.util.Iterator;
 
 public class Poupador extends ProgramaPoupador {
 	
+	int[][] mapaPassos = new int[30][30];
+	int[][] mapaValores = new int[30][30];
+	
 	public int acao() {
 		
-//		System.out.println(sensor.getVisaoIdentificacao()[11]);
-//		System.out.println(sensor.getPosicao());
 		System.out.println("getX - " + sensor.getPosicao().getX());
 		System.out.println("getY - " + sensor.getPosicao().getY());
 		
@@ -16,25 +16,60 @@ public class Poupador extends ProgramaPoupador {
 		
 		float[] soma_peso = new float[4];
 		
-//		String saida = "";
-//		int[][] quadradosDoCampo = new int [30][30];
+		String saida = "";
+		String saida1 = "";
 
+		int cordx = (int) sensor.getPosicao().getX();
+		int cordy = (int) sensor.getPosicao().getY();
 		
-//		for (int l = 0; l < quadradosDoCampo.length; l++) {
-//			for (int c = 0; c < quadradosDoCampo[0].length; c++) {
-//				saida = saida + quadradosDoCampo[l][c] + ","; // imprime caracter a caracter
-//			}
-//			saida = saida + "\n"; // muda de linha
-//		}
-//		System.out.println(saida);
+		System.out.println("Cordx: " + cordx);
+		System.out.println("Cordy: " + cordy);
 		
-//		int cordx = (int) sensor.getPosicao().getX();
-//		int cordy = (int) sensor.getPosicao().getY();
-//		
-//		System.out.println("Cordx: " + cordx);
-//		System.out.println("Cordy: " + cordy);
-//		
-//		quadradosDoCampo[cordx][cordy] = quadradosDoCampo[cordx][cordy] + 1;
+		mapaPassos[cordy][cordx] = mapaPassos[cordy][cordx] + 1;
+		
+		mapaValores[cordy][cordx] = 0;
+		mapaValores[cordy - 2][cordx - 2] = sensor.getVisaoIdentificacao()[0];
+		mapaValores[cordy - 2][cordx - 1] = sensor.getVisaoIdentificacao()[1];
+		mapaValores[cordy - 2][cordx] = sensor.getVisaoIdentificacao()[2];
+		mapaValores[cordy - 2][cordx + 1] = sensor.getVisaoIdentificacao()[3];
+		mapaValores[cordy - 2][cordx + 2] = sensor.getVisaoIdentificacao()[4];
+		mapaValores[cordy - 1][cordx - 2] = sensor.getVisaoIdentificacao()[5];
+		mapaValores[cordy - 1][cordx - 1] = sensor.getVisaoIdentificacao()[6];
+		mapaValores[cordy - 1][cordx] = sensor.getVisaoIdentificacao()[7];
+		mapaValores[cordy - 1][cordx + 1] = sensor.getVisaoIdentificacao()[8];
+		mapaValores[cordy - 1][cordx + 2] = sensor.getVisaoIdentificacao()[9];
+		mapaValores[cordy][cordx - 2] = sensor.getVisaoIdentificacao()[10];
+		mapaValores[cordy][cordx - 1] = sensor.getVisaoIdentificacao()[11];
+		mapaValores[cordy][cordx + 1] = sensor.getVisaoIdentificacao()[12];
+		mapaValores[cordy][cordx + 2] = sensor.getVisaoIdentificacao()[13];
+		mapaValores[cordy + 1][cordx - 2] = sensor.getVisaoIdentificacao()[14];
+		mapaValores[cordy + 1][cordx - 1] = sensor.getVisaoIdentificacao()[15];
+		mapaValores[cordy + 1][cordx] = sensor.getVisaoIdentificacao()[16];
+		mapaValores[cordy + 1][cordx + 1] = sensor.getVisaoIdentificacao()[17];
+		mapaValores[cordy + 1][cordx + 2] = sensor.getVisaoIdentificacao()[18];
+		mapaValores[cordy + 2][cordx - 2] = sensor.getVisaoIdentificacao()[19];
+		mapaValores[cordy + 2][cordx - 1] = sensor.getVisaoIdentificacao()[20];
+		mapaValores[cordy + 2][cordx] = sensor.getVisaoIdentificacao()[21];
+		mapaValores[cordy + 2][cordx + 1] = sensor.getVisaoIdentificacao()[22];
+		mapaValores[cordy + 2][cordx + 2] = sensor.getVisaoIdentificacao()[23];
+		
+		for (int l = 0; l < mapaPassos.length; l++) {
+			for (int c = 0; c < mapaPassos[0].length; c++) {
+				saida = saida + mapaPassos[l][c] + " "; // imprime caracter a caracter
+			}
+			saida = saida + "\n"; // muda de linha
+		}
+		System.out.println(saida);
+		
+		for (int l = 0; l < mapaValores.length; l++) {
+			for (int c = 0; c < mapaValores[0].length; c++) {
+				saida1 = saida1 + mapaValores[l][c] + " "; // imprime caracter a caracter
+			}
+			saida1 = saida1 + "\n"; // muda de linha
+		}
+		System.out.println(saida1);
+		
+		
 //		
 //		for (int l = 0; l < 30; l++) {
 //			
@@ -114,10 +149,10 @@ public class Poupador extends ProgramaPoupador {
 		
 		System.out.println("Aleatorio: "+ a);
 		System.out.println("Soma total: " + soma_total);
-		System.out.println("indece 0: " + soma_peso_ordenado[0]);
-		System.out.println("indece 1: " + soma_peso_ordenado[1]);
-		System.out.println("indece 2: " + soma_peso_ordenado[2]);
-		System.out.println("indece 3: " + soma_peso_ordenado[3]);
+		System.out.println("indice 0: " + soma_peso_ordenado[0]);
+		System.out.println("indice 1: " + soma_peso_ordenado[1]);
+		System.out.println("indice 2: " + soma_peso_ordenado[2]);
+		System.out.println("indice 3: " + soma_peso_ordenado[3]);
 		
 		double soma3 = soma_peso_ordenado[3] + soma_peso_ordenado[2] + soma_peso_ordenado[1];
 		double soma2 = soma_peso_ordenado[2] + soma_peso_ordenado[1];
